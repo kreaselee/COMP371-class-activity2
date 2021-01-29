@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Class Activity 2</string>
+
+    <string name="button_go">Go</string>
+    <string name="editText_cityName">Enter city name</string>
+</resources>
