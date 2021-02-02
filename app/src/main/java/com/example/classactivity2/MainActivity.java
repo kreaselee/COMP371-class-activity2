@@ -22,9 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button_go;
 
-    private static final String api_url="api.openweathermap.org/data/2.5/weather?q=";
+    private static final String api_url="http://api.openweathermap.org/data/2.5/weather?q=";
     private static final String key="&appid=1d212675bfe07dc4807e300c3bda43d4";
     private String city;
+    private String constructed_url;
     private EditText editText_cityName;
     private static AsyncHttpClient client = new AsyncHttpClient();
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         // get text input
         city = editText_cityName.getText().toString();
-        String constructed_url=api_url+city+key;
+        constructed_url=api_url+city+key;
 
         // set the header because of the api endpoint
         client.addHeader("Accept", "application/json");
@@ -65,7 +66,12 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject json = new JSONObject(new String(responseBody));
                     Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                     // add weather information into the intent
-                    // intent.putExtra("joke", json.getString("joke"));
+                    intent.putExtra("name", json.getString("name"));
+                    // intent.putExtra("country", json.getString("country"));
+                    // intent.putExtra("description", json.getString("description"));
+                    // intent.putExtra("temp_max", json.getInt("temp_max"));
+                    // intent.putExtra("temp_min", json.getInt("temp_min"));
+                    // intent.putExtra("feels_like", json.getInt("feels_like"));
 
                     // convert any json data into a string to put into the intent
                     // when you receive the intent in the next activity
@@ -73,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 } catch (JSONException e) {
+                    Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                    // no city found
+                    intent.putExtra("name", "No city found");
+
                     e.printStackTrace();
                 }
 
