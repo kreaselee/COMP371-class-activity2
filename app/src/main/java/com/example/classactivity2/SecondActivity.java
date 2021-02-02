@@ -16,9 +16,13 @@ public class SecondActivity extends AppCompatActivity {
     private TextView textView_city;
     private TextView textView_country;
     private TextView textView_description;
+    private TextView textView_high;
     private TextView textView_highNum;
+    private TextView textView_low;
     private TextView textView_lowNum;
-    private TextView getTextView_feelsLikeNum;
+    private TextView textView_feelsLike;
+    private TextView textView_feelsLikeNum;
+    private TextView textView_error;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,17 +35,25 @@ public class SecondActivity extends AppCompatActivity {
         textView_city = findViewById(R.id.textView_city);
         textView_country = findViewById(R.id.textView_country);
         textView_description = findViewById(R.id.textView_description);
+        textView_high = findViewById(R.id.textView_high);
         textView_highNum = findViewById(R.id.textView_highNum);
+        textView_low = findViewById(R.id.textView_low);
         textView_lowNum = findViewById(R.id.textView_lowNum);
-        getTextView_feelsLikeNum = findViewById(R.id.textView_feelsLikeNum);
+        textView_feelsLike = findViewById(R.id.textView_feelsLike);
+        textView_feelsLikeNum = findViewById(R.id.textView_feelsLikeNum);
+        textView_error = findViewById(R.id.textView_error);
 
         Intent intent = getIntent();
-        textView_city.setText(intent.getStringExtra("name")+", ");
-        // textView_country.setText(intent.getStringExtra("country"));
-        // textView_description.setText(intent.getStringExtra("description"));
-        // textView_highNum.setText(intent.getIntExtra("temp_max", 0));
-        // textView_lowNum.setText(intent.getIntExtra("temp_min", 0));
-        // textView_feelsLikeNum.setText(intent.getIntExtra("feels_like", 0));
+        textView_city.setText(intent.getStringExtra("name"));
+        textView_country.setText(intent.getStringExtra("country"));
+        textView_description.setText(intent.getStringExtra("description"));
+        textView_high.setText(intent.getStringExtra("temp_max"));
+        // textView_highNum.setText(intent.getIntExtra("temp_max_value", 0));
+        textView_low.setText(intent.getStringExtra("temp_min"));
+        // textView_lowNum.setText(intent.getIntExtra("temp_min_value", 0));
+        textView_feelsLike.setText(intent.getStringExtra("feels_like"));
+        // textView_feelsLikeNum.setText(intent.getIntExtra("feels_like_value", 0));
 
+        textView_error.setText(intent.getStringExtra("error"));
     }
 }

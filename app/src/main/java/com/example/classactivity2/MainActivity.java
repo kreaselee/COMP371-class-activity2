@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,14 +65,21 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     JSONObject json = new JSONObject(new String(responseBody));
+                    JSONObject sys = json.getJSONObject("sys");
+                    JSONArray weatherArray = json.getJSONArray("weather");
+                    JSONObject weather = weatherArray.getJSONObject(0);
+
                     Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                     // add weather information into the intent
-                    intent.putExtra("name", json.getString("name"));
-                    // intent.putExtra("country", json.getString("country"));
-                    // intent.putExtra("description", json.getString("description"));
-                    // intent.putExtra("temp_max", json.getInt("temp_max"));
-                    // intent.putExtra("temp_min", json.getInt("temp_min"));
-                    // intent.putExtra("feels_like", json.getInt("feels_like"));
+                    intent.putExtra("name", json.getString("name")+", ");
+                    intent.putExtra("country", sys.getString("country"));
+                    intent.putExtra("description", weather.getString("description"));
+                    intent.putExtra("temp_max", "High");
+                    // intent.putExtra("temp_max_value", json.getInt("temp_max"));
+                    intent.putExtra("temp_min", "Low");
+                    // intent.putExtra("temp_min_value", json.getInt("temp_min"));
+                    intent.putExtra("feels_like", "Feels like");
+                    // intent.putExtra("feels_like_value", json.getInt("feels_like"));
 
                     // convert any json data into a string to put into the intent
                     // when you receive the intent in the next activity
@@ -79,11 +87,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 } catch (JSONException e) {
-                    Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                    // no city found
-                    intent.putExtra("name", "No city found");
-
                     e.printStackTrace();
+
                 }
 
 
@@ -94,6 +99,21 @@ public class MainActivity extends AppCompatActivity {
                 // when you get a 400-499 status code
                 // implement String that says "No city found."
                 Log.e("api error", new String(responseBody));
+
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                // no city found
+                intent.putExtra("error", "No city found");
+                intent.putExtra("name", "");
+                intent.putExtra("country", "");
+                // intent.putExtra("description", json.getString("description"));
+                intent.putExtra("temp_max", "");
+                // intent.putExtra("temp_max_value", json.getInt("temp_max"));
+                intent.putExtra("temp_min", "");
+                // intent.putExtra("temp_min_value", json.getInt("temp_min"));
+                intent.putExtra("feels_like", "");
+                // intent.putExtra("feels_like_value", json.getInt("feels_like"));
+
+                startActivity(intent);
             }
         });
     }

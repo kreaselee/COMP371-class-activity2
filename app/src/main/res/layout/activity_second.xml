@@ -37,16 +37,28 @@
 
     <TextView
         android:id="@+id/textView_description"
-        android:layout_width="58dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_city" />
+
+    <TextView
+        android:id="@+id/textView_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text=""
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description" />
 
     <LinearLayout
         android:id="@+id/linearLayout_info"
@@ -76,7 +88,7 @@
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="20dp"
-                android:text="@string/textView_high" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/textView_highNum"
@@ -104,7 +116,7 @@
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="20dp"
-                android:text="@string/textView_Low" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/textView_lowNum"
@@ -132,7 +144,7 @@
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="20dp"
-                android:text="@string/textView_feelsLike" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/textView_feelsLikeNum"
