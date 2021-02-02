@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         // get text input
         city = editText_cityName.getText().toString();
-        constructed_url=api_url+city+key;
+        constructed_url=api_url+city+key+"&units=imperial";
 
         // set the header because of the api endpoint
         client.addHeader("Accept", "application/json");
