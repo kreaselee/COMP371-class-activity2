@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject sys = json.getJSONObject("sys");
                     JSONArray weatherArray = json.getJSONArray("weather");
                     JSONObject weather = weatherArray.getJSONObject(0);
+                    JSONObject main = json.getJSONObject("main");
 
                     Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                     // add weather information into the intent
@@ -75,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("country", sys.getString("country"));
                     intent.putExtra("description", weather.getString("description"));
                     intent.putExtra("temp_max", "High");
-                    // intent.putExtra("temp_max_value", json.getInt("temp_max"));
+                    intent.putExtra("temp_max_value", main.getString("temp_max"));
                     intent.putExtra("temp_min", "Low");
-                    // intent.putExtra("temp_min_value", json.getInt("temp_min"));
+                    intent.putExtra("temp_min_value", main.getString("temp_min"));
                     intent.putExtra("feels_like", "Feels like");
-                    // intent.putExtra("feels_like_value", json.getInt("feels_like"));
+                    intent.putExtra("feels_like_value", main.getString("feels_like"));
 
                     // convert any json data into a string to put into the intent
                     // when you receive the intent in the next activity
@@ -103,15 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 // no city found
                 intent.putExtra("error", "No city found");
-                intent.putExtra("name", "");
-                intent.putExtra("country", "");
-                // intent.putExtra("description", json.getString("description"));
-                intent.putExtra("temp_max", "");
-                // intent.putExtra("temp_max_value", json.getInt("temp_max"));
-                intent.putExtra("temp_min", "");
-                // intent.putExtra("temp_min_value", json.getInt("temp_min"));
-                intent.putExtra("feels_like", "");
-                // intent.putExtra("feels_like_value", json.getInt("feels_like"));
 
                 startActivity(intent);
             }

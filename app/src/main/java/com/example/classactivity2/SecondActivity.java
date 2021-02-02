@@ -48,11 +48,11 @@ public class SecondActivity extends AppCompatActivity {
         textView_country.setText(intent.getStringExtra("country"));
         textView_description.setText(intent.getStringExtra("description"));
         textView_high.setText(intent.getStringExtra("temp_max"));
-        // textView_highNum.setText(intent.getIntExtra("temp_max_value", 0));
+        textView_highNum.setText(intent.getStringExtra("temp_max_value"));
         textView_low.setText(intent.getStringExtra("temp_min"));
-        // textView_lowNum.setText(intent.getIntExtra("temp_min_value", 0));
+        textView_lowNum.setText(intent.getStringExtra("temp_min_value"));
         textView_feelsLike.setText(intent.getStringExtra("feels_like"));
-        // textView_feelsLikeNum.setText(intent.getIntExtra("feels_like_value", 0));
+        textView_feelsLikeNum.setText(intent.getStringExtra("feels_like_value"));
 
         textView_error.setText(intent.getStringExtra("error"));
     }
